@@ -11,8 +11,12 @@ axios.interceptors.response.use(
 
 const myService =  {
   getTasks: async () => {
-    const result = await axios.get('/tasks')    
-    return result.data;
+    const result = await axios.get('/tasks');
+    if (Array.isArray(result.data))
+    return result.data
+    else {
+      return [];
+    }
   },
 
   addTask: async(name)=>{
